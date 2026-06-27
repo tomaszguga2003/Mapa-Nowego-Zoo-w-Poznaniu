@@ -1,0 +1,187 @@
+html,
+body,
+#map {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  z-index: 1;
+  background-color: #e9e5dc;
+  background-image: url("Background/background.png");
+  background-repeat: repeat;
+  background-size: 500px 500px;
+}
+
+@font-face {
+  font-family: 'Lato';
+  src: url('Fonts/Lato/Lato-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Lato_Bold';
+  src: url('Fonts/Lato/Lato-Bold.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* Wygląd kontenera kompasu */
+#strzalka-polnocy {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  width: 60px;
+  height: 60px;
+  z-index: 1000;
+  display: flex;
+  filter: drop-shadow(2px 2px 3px rgba(0, 0, 0, 0.3));
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+/* Wygląd samej ikonki strzałki */
+#strzalka-ikona {
+  width: 80%;
+  transition: transform 0.1s linear;
+}
+
+/* style dla zoom + home */
+.leaflet-control-zoomhome a {
+  background-color: #ffffff;
+  color: #89732c;
+}
+
+.leaflet-control-zoomhome a:hover {
+  background-color: #f4f4f4;
+  color: #89732c;
+}
+
+.leaflet-control-railway {
+  background-image: url(./The-zoo-train-route/Train-route.png); 
+  background-size: 20px 20px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: #ffffff;
+  width: 30px;
+  height: 30px;
+  display: block;
+  cursor: pointer;
+  border-bottom: 1px solid #ccc;
+}
+
+.leaflet-control-railway:hover {
+  background-color: #f4f4f4;
+}
+
+.sidebar-open .leaflet-top.leaflet-left,
+.sidebar-open .leaflet-bottom.leaflet-left {
+    display: none;
+}
+
+.sidebar-icon-img {
+  width: 20px;
+  height: 20px;
+  display: block;
+  margin: 10px auto;
+}
+
+#picture-tab {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+.normal-text {
+  font-size: 15px;
+  line-height: 1.8;
+  text-align: justify;
+  font-family: 'Lato', sans-serif;
+  color: #3c3004;
+  margin-top: 20px;
+  hyphens: auto;
+}
+
+.normal-text b {
+  color: #89732c;
+  font-weight: 600;
+}
+
+.normal-text a {
+  color: #89732c;
+}
+
+.normal-text2 {
+  font-size: 15px;
+  line-height: 1.8;
+  text-align: left;
+  font-family: 'Lato', sans-serif;
+  color: #3c3004;
+  margin-top: 20px;
+  hyphens: auto;
+}
+
+.normal-text2 b {
+  color: #89732c;
+  font-weight: 600;
+}
+
+.normal-text2 a {
+  color: #89732c;
+}
+
+.zoo-menu-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 20px 0px;
+  line-height: 1.8;
+  text-align: left;
+}
+
+.zoo-menu-list li {
+  margin-bottom: 30px;
+}
+
+.link-zoo {
+  display: inline-block;
+  text-decoration: none;
+  color: #3c3004 !important;
+  font-family: 'Lato', sans-serif;;
+  font-size: 18px;
+  transition: 0.3s;
+}
+
+.link-zoo:hover {
+  color: #af943a !important;
+  transform: scale(1.05);
+}
+
+.custom-cluster {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%; 
+  color: white; 
+  font-weight: bold;
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); 
+}
+
+.cluster-large {
+  background-color: #3c3004;
+}
+
+.cluster-medium {
+  background-color: #997a0a;
+}
+
+.cluster-small {
+  background-color: #d5aa0e;
+}
+
+.leaflet-control-layers-toggle {
+    width: 30px !important;
+    height: 30px !important;
+    background-size: 20px 20px;
+}

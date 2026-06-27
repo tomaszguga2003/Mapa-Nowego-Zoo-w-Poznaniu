@@ -1,0 +1,531 @@
+<!doctype html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <title>Mapa Nowego Zoo w Poznaniu</title>
+
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="./Leaflet.Control.OSMGeocoder/Control.OSMGeocoder.css"
+    />
+    <link
+      rel="stylesheet"
+      href="./Leaflet.Control.Locate/L.Control.Locate.css"
+    />
+    <link
+      rel="stylesheet"
+      href="./Leaflet.GraphicScale/Leaflet.GraphicScale.min.css"
+    />
+    <link rel="stylesheet" href="./Leaflet.fullscreen/leaflet.fullscreen.css" />
+    <link rel="stylesheet" href="./Leaflet.ZoomHome/Leaflet.ZoomHome.css" />
+    <link rel="stylesheet" href="./Leaflet.sidebar.v2/leaflet-sidebar.css" />
+    <link rel="stylesheet" href="./Marker_cluster/MarkerCluster.css" />
+    <link rel="stylesheet" href="./style.css" type="text/css" />
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="./Leaflet.Control.OSMGeocoder/Control.OSMGeocoder.js"></script>
+    <script src="./Leaflet.Control.Locate/L.Control.Locate.js"></script>
+    <script src="./Leaflet.GraphicScale/Leaflet.GraphicScale.min.js"></script>
+    <script src="./Leaflet.fullscreen/leaflet.fullscreen.min.js"></script>
+    <script src="./Leaflet.ZoomHome/Leaflet.ZoomHome.min.js"></script>
+    <script src="./Leaflet.sidebar.v2/leaflet-sidebar.js"></script>
+    <script src="./Leaflet-rotate-master/leaflet-rotate.js"></script>
+    <script src="./The-zoo-train-route/train_route.js"></script>
+    <script src="./The-zoo-train-route/train_stations.js"></script>
+    <script src="./Point_layers/enclosures.js"></script>
+    <script src="./Marker_cluster/leaflet.markercluster.js"></script>
+  </head>
+
+  <body>
+    <div id="map"></div>
+
+    <div id="strzalka-polnocy">
+      <img
+        id="strzalka-ikona"
+        src="./Leaflet-rotate-master/Strzałka północy.png"
+        alt="Strzałka Północy"
+      />
+    </div>
+
+    <div id="sidebar" class="leaflet-sidebar collapsed">
+      <div class="leaflet-sidebar-tabs">
+        <ul role="tablist">
+          <li>
+            <a href="#home" role="tab">
+              <img
+                src="./Leaflet.sidebar.v2/Menu.png"
+                class="sidebar-icon-img"
+                alt="Menu"
+              />
+            </a>
+          </li>
+        </ul>
+
+        <ul role="tablist">
+          <li style="pointer-events: none">
+            <a href="#train-tab" role="tab">
+              <i class="" style="font-size: 24px; padding-top: 5px"></i>
+            </a>
+          </li>
+
+          <li style="pointer-events: none">
+            <a href="#enclosures-tab" role="tab">
+              <i class="" style="font-size: 24px; padding-top: 5px"></i>
+            </a>
+          </li>
+
+          <li>
+            <a href="#o-mapie" role="tab">
+              <img
+                src="./Leaflet.sidebar.v2/O-mapie.png"
+                class="sidebar-icon-img"
+                alt="Info"
+              />
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="leaflet-sidebar-content">
+        <div class="leaflet-sidebar-pane" id="home">
+          <h1 class="leaflet-sidebar-header">
+            MENU
+            <div class="leaflet-sidebar-close">
+              <i class="fa fa-caret-left"></i>
+            </div>
+          </h1>
+          <ul class="zoo-menu-list">
+            <li>
+              <a href="https://zoo.poznan.pl/" target="_blank" class="link-zoo"
+                >Oficjalna strona Zoo</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://zoo.poznan.pl/informacje-nowe-zoo/"
+                target="_blank"
+                class="link-zoo"
+                >Informacje o Zoo</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://zoo.poznan.pl/regulamin/"
+                target="_blank"
+                class="link-zoo"
+                >Regulamin zwiedzania</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://zoo.poznan.pl/ceny-biletow-wstepu-do-ogrodu-zoologicznego/"
+                target="_blank"
+                class="link-zoo"
+                >Ceny biletów</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://bilety.zoo.poznan.pl/ogrod-zoologiczny-w-poznaniu.html"
+                target="_blank"
+                class="link-zoo"
+                >Kup bilet online</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://zoo.poznan.pl/contact/#kontakt"
+                target="_blank"
+                class="link-zoo"
+                >Kontakt</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://zoo.poznan.pl/dostepnosc-dojazd-do-nowego-zoo/"
+                target="_blank"
+                class="link-zoo"
+                >Dojazd</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://www.facebook.com/profile.php?id=100068839021417"
+                target="_blank"
+                class="link-zoo"
+                >Facebook</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://www.instagram.com/zoopoznan"
+                target="_blank"
+                class="link-zoo"
+                >Instagram</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://www.youtube.com/@ZOOPOZNAN"
+                target="_blank"
+                class="link-zoo"
+                >Youtube</a
+              >
+            </li>
+          </ul>
+        </div>
+
+        <div class="leaflet-sidebar-pane" id="train-tab">
+          <h1 class="leaflet-sidebar-header">
+            KOLEJKA
+            <div class="leaflet-sidebar-close">
+              <i class="fa fa-caret-left"></i>
+            </div>
+          </h1>
+          <p id="dynamic-info-stations" class="normal-text2">
+            Kliknij znacznik stacji na mapie, aby zobaczyć szczegóły.
+          </p>
+        </div>
+
+        <div class="leaflet-sidebar-pane" id="enclosures-tab">
+          <h1 class="leaflet-sidebar-header">
+            WYBIEGI
+            <div class="leaflet-sidebar-close">
+              <i class="fa fa-caret-left"></i>
+            </div>
+          </h1>
+          <p id="dynamic-info-enclosures" class="normal-text2">
+            Kliknij znacznik wybiegu na mapie, aby zobaczyć szczegóły.
+          </p>
+        </div>
+
+        <div class="leaflet-sidebar-pane" id="o-mapie">
+          <h1 class="leaflet-sidebar-header">
+            O MAPIE
+            <div class="leaflet-sidebar-close">
+              <i class="fa fa-caret-left"></i>
+            </div>
+          </h1>
+          <p class="normal-text">
+            Mapa została stworzona w ramach pracy inżynierskiej
+            <b>Tomasza Gugi</b> w 2026 r. pod opieką
+            <b>dr inż. Łukasza Halika</b>, na kierunku Geodezja i kartografia
+            Wydziału Nauk Geograficznych i Geologicznych UAM.<br/><br/>
+            Mapa przeznaczona jest głównie dla urządzeń mobilnych i ma na celu
+            ułatwienie oraz urozmaicenie zwiedzania zoo. Interaktywne funkcje
+            mapy pozwalają przede wszystkim na łatwe i szybkie lokalizowanie
+            wybranych obiektów na terenie zoo, prezentując przy tym informacje
+            niezbędne przy zwiedzaniu tego obiektu.<br/><br/>
+            Opracowanie: Tomasz Guga<br/>
+            Kontakt:
+            <a href="mailto:tomaszguga3@gmail.com">tomaszguga3@gmail.com</a><br/><br/>
+            Źródło informacji: Nowe Zoo Poznań<br/>
+            Zdjęcia: Autora (jeśli nie zaznaczono inaczej)
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Inicjalizacja mapy
+      var map = L.map("map", {
+        fullscreenControl: true,
+        zoomControl: false,
+        rotate: true,
+        bearing: -70,
+        rotateControl: false,
+        touchRotate: false,
+        maxBounds: [
+          [52.41303089488582, 16.981995198239098],
+          [52.38938364419313, 17.023712184542475],
+        ],
+        maxBoundsViscosity: 1.0,
+        inertia: false,
+        bounceAtZoomLimits: false,
+      }).setView([52.401381, 17.004067], 15);
+
+      // Bazowa mapa, kafelki
+      L.tileLayer("Basemap/{z}/{x}/{y}.png", {
+        minZoom: 15,
+        maxZoom: 22,
+        noWrap: true,
+      }).addTo(map);
+
+      // dodanie panelu bocznego
+      var sidebar = L.control.sidebar({ container: "sidebar" }).addTo(map);
+
+      // zoom, podziałka, lokalizacja
+      var zoomHome = L.Control.zoomHome();
+      zoomHome.addTo(map);
+      L.control.locate().addTo(map);
+      var graphicScale = L.control.graphicScale({ fill: "fill" }).addTo(map);
+
+      var ifVisible = false;
+
+      var RailwayControl = L.Control.extend({
+        options: { position: "topleft" },
+        onAdd: function (map) {
+          var container = L.DomUtil.create(
+            "div",
+            "leaflet-bar leaflet-control",
+          );
+          var button = L.DomUtil.create(
+            "a",
+            "leaflet-control-railway",
+            container,
+          );
+
+          button.href = "#";
+          button.title = "Pokaż/ukryj trasę kolejki";
+
+          L.DomEvent.on(button, "click", function (e) {
+            if (train_route_layer && train_stations_layer) {
+              var targetOpacity = ifVisible ? 0 : 1;
+              button.style.backgroundColor = ifVisible ? "#ffffff" : "#f4f4f4";
+              train_route_layer.setStyle({ opacity: targetOpacity });
+              train_stations_layer.eachLayer(function (layer) {
+                if (layer.setOpacity) {
+                  layer.setOpacity(targetOpacity);
+                }
+                if (layer.getElement()) {
+                  layer.getElement().style.pointerEvents = ifVisible
+                    ? "none"
+                    : "auto";
+                }
+              });
+
+              ifVisible = !ifVisible;
+            }
+          });
+          return container;
+        },
+      });
+
+      // Trasa kolejki
+      function train_route_zoom(zoom) {
+        if (zoom >= 21) return 8;
+        if (zoom >= 20) return 7;
+        if (zoom >= 19) return 6;
+        if (zoom >= 18) return 5;
+        if (zoom >= 17) return 4;
+        if (zoom >= 16) return 3;
+        if (zoom >= 15) return 2;
+        return 2;
+      }
+      function styleRouteLine(feature) {
+        if (feature.properties.nazwa === "route") {
+          return {
+            color: "#ff7800",
+            weight: train_route_zoom(map.getZoom()),
+            opacity: 0,
+            dashArray: "3, 8",
+            lineJoin: "round",
+          };
+        }
+      }
+
+      function styleRouteMarker(feature) {
+        if (feature.geometry.type === "point") {
+          return {
+            opacity: 0,
+          };
+        }
+      }
+
+      var train_route_layer = L.geoJson(train_route, {
+        style: styleRouteLine,
+      }).addTo(map);
+
+      var iconStation1 = L.icon({
+        iconUrl: "./The-zoo-train-route/station_0.svg",
+        iconSize: [40, 40],
+      });
+
+      var iconStation2 = L.icon({
+        iconUrl: "./The-zoo-train-route/station_1.svg",
+        iconSize: [40, 40],
+      });
+
+      var iconStation3 = L.icon({
+        iconUrl: "./The-zoo-train-route/station_2.svg",
+        iconSize: [40, 40],
+      });
+
+      var iconStation4 = L.icon({
+        iconUrl: "./The-zoo-train-route/station_3.svg",
+        iconSize: [40, 40],
+      });
+
+      var iconStation5 = L.icon({
+        iconUrl: "./The-zoo-train-route/station_4.svg",
+        iconSize: [40, 40],
+      });
+
+      // kolejka
+      var train_stations_layer = L.geoJson(train_stations, {
+        pointToLayer: function (feature, latlng) {
+          if (feature.properties.id == "1") {
+            return L.marker(latlng, {
+              icon: iconStation1,
+              opacity: 0,
+              title: "Przystanek początkowy",
+            }).on("click", function () {
+              document.getElementById("dynamic-info-stations").innerHTML =
+                "W kwietniu kolejka dowozi pasażerów tylko w soboty i niedziele. Codzienne kursy (od 9:30 do 18:30) w pełnym sezonie – od maja aż do końca sierpnia! <br> <br> <b>Przystanek początkowy</b> - w pobliżu tego przystanku znajdziesz m.in.: ogródek dziecięcy, pawilon zwierząt nocnych i ptaki egzotyczne." +
+                "<img src='./The-zoo-train-route/Przystanek_test.jpg' alt='Zdjęcie stacji' style='width: 100%; border-radius: 5px; margin-top: 30px;'>";
+              sidebar.open("train-tab");
+            });
+          } else if (feature.properties.id == "2") {
+            return L.marker(latlng, {
+              icon: iconStation2,
+              opacity: 0,
+              title: "Przystanek 1",
+            }).on("click", function () {
+              document.getElementById("dynamic-info-stations").innerHTML =
+                "W kwietniu kolejka dowozi pasażerów tylko w soboty i niedziele. Codzienne kursy (od 9:30 do 18:30) w pełnym sezonie – od maja aż do końca sierpnia! <br> <br> <b>Przystanek pierwszy flaming</b> - w pobliżu tego przystanku znajdziesz m.in.: ptaki wodne, zwierzęta fauny afryki i lemury";
+              sidebar.open("train-tab");
+            });
+          } else if (feature.properties.id == "3") {
+            return L.marker(latlng, {
+              icon: iconStation3,
+              opacity: 0,
+              title: "Przystanek 2",
+            }).on("click", function () {
+              document.getElementById("dynamic-info-stations").innerHTML =
+                "W kwietniu kolejka dowozi pasażerów tylko w soboty i niedziele. Codzienne kursy (od 9:30 do 18:30) w pełnym sezonie – od maja aż do końca sierpnia! <br> <br> <b>Przystanek drugi słoń</b> - w pobliżu tego przystanku znajdziesz m.in.: słonie, wielbłądy i susły.";
+              sidebar.open("train-tab");
+            });
+          } else if (feature.properties.id == "4") {
+            return L.marker(latlng, {
+              icon: iconStation4,
+              opacity: 0,
+              title: "Przystanek 3",
+            }).on("click", function () {
+              document.getElementById("dynamic-info-stations").innerHTML =
+                "W kwietniu kolejka dowozi pasażerów tylko w soboty i niedziele. Codzienne kursy (od 9:30 do 18:30) w pełnym sezonie – od maja aż do końca sierpnia! <br> <br> <b>Przystanek trzeci pelikan</b> - w pobliżu tego przystanku znajdziesz m.in.: ptaki wodne, insektarium, ptaki drapieżne i sowy.";
+              sidebar.open("train-tab");
+            });
+          } else if (feature.properties.id == "5") {
+            return L.marker(latlng, {
+              icon: iconStation5,
+              opacity: 0,
+              title: "Przystanek 4",
+            }).on("click", function () {
+              document.getElementById("dynamic-info-stations").innerHTML =
+                "W kwietniu kolejka dowozi pasażerów tylko w soboty i niedziele. Codzienne kursy (od 9:30 do 18:30) w pełnym sezonie – od maja aż do końca sierpnia! <br> <br> <b>Przystanek czwarty ryś</b> - w pobliżu tego przystanku znajdziesz m.in.: drobne ssaki, nosorożce i wydry.";
+              sidebar.open("train-tab");
+            });
+          }
+        },
+        style: styleRouteMarker,
+      }).addTo(map);
+
+      map.addControl(new RailwayControl());
+
+      // Strzałka północy (funkcje)
+      var compass = document.getElementById("strzalka-ikona");
+      var compassContainer = document.getElementById("strzalka-polnocy");
+
+      function update_rotation() {
+        var kat = map.getBearing();
+        compass.style.transform = "rotate(" + kat + "deg)";
+        console.log("Kąt mapy: " + kat);
+      }
+
+      update_rotation(); // Obrót strzałki na -70 po załadowaniu
+
+      //sidebar przy otwarciu = open
+      sidebar.on("opening", function () {
+        document.getElementById("map").classList.add("sidebar-open");
+      });
+
+      //sidebar przy zamknęciu = nie open
+      sidebar.on("closing", function () {
+        document.getElementById("map").classList.remove("sidebar-open");
+      });
+
+      //wybiegi zoo
+      var markers = L.markerClusterGroup({
+        iconCreateFunction: function (cluster) {
+          var count = cluster.getChildCount();
+          var sizeClass = "";
+          var size = 0;
+
+          if (count > 15) {
+            sizeClass = "cluster-large";
+            size = 60;
+          } else if (count > 10) {
+            sizeClass = "cluster-medium";
+            size = 50;
+          } else {
+            sizeClass = "cluster-small";
+            size = 40;
+          }
+
+          return L.divIcon({
+            html: "<div><span>" + count + "</span></div>",
+            className: "custom-cluster " + sizeClass,
+            iconSize: L.point(size, size),
+          });
+        },
+      });
+
+      var enclosures_layer = L.geoJson(enclosures, {
+        style: styleRouteLine,
+
+        pointToLayer: function (feature, latlng) {
+          var iconName = feature.properties.icon || "null";
+          var infoId = feature.properties.fid || "null";
+          var enclosureName = feature.properties.name || "null";
+          var enclosureInfo = feature.properties.comments || "null";
+          var animalPhoto =
+            "<img src='./Animal_photos/" +
+            infoId +
+            ".jpg' alt='Zdjęcie wybiegu' style='width: 100%; border-radius: 5px; margin-top: 30px;'>";
+
+          var enclosureIcon = L.icon({
+            iconUrl: "Zoo-enclosures/" + iconName + ".svg",
+            iconSize: [60, 60],
+          });
+
+          return L.marker(latlng, {
+            icon: enclosureIcon,
+            title: feature.properties.name,
+          }).on("click", function () {
+            document.getElementById("dynamic-info-enclosures").innerHTML =
+              "<b>" +
+              enclosureName +
+              "</b>" +
+              "<br> <br>" +
+              enclosureInfo +
+              "<br>" +
+              animalPhoto ;
+            title: (feature.properties.name, sidebar.open("enclosures-tab"));
+          });
+        },
+      });
+
+      markers.addLayer(enclosures_layer);
+      map.addLayer(markers);
+
+      var overlays = {
+        "<img src='Zoo-enclosures/Zyr.svg' width='18px' style='vertical-align: middle; margin-right: 5px;'/> Wybiegi w Zoo":
+          markers,
+      };
+
+      L.control.layers(null, overlays, { position: "topleft" }).addTo(map);
+    </script>
+  </body>
+</html>
