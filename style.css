@@ -58,23 +58,6 @@ body,
   color: #89732c;
 }
 
-.leaflet-control-railway {
-  background-image: url(./The-zoo-train-route/Train-route.png); 
-  background-size: 20px 20px;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-color: #ffffff;
-  width: 30px;
-  height: 30px;
-  display: block;
-  cursor: pointer;
-  border-bottom: 1px solid #ccc;
-}
-
-.leaflet-control-railway:hover {
-  background-color: #f4f4f4;
-}
-
 .sidebar-open .leaflet-top.leaflet-left,
 .sidebar-open .leaflet-bottom.leaflet-left {
     display: none;
@@ -169,15 +152,15 @@ body,
 }
 
 .cluster-large {
-  background-color: #3c3004;
+  background-color: #4D0202;
 }
 
 .cluster-medium {
-  background-color: #997a0a;
+  background-color: #792102;
 }
 
 .cluster-small {
-  background-color: #d5aa0e;
+  background-color: #AE4501;
 }
 
 .leaflet-control-layers-toggle {
