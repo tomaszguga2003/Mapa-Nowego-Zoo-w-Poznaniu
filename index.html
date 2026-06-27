@@ -274,45 +274,6 @@
 
       var ifVisible = false;
 
-      var RailwayControl = L.Control.extend({
-        options: { position: "topleft" },
-        onAdd: function (map) {
-          var container = L.DomUtil.create(
-            "div",
-            "leaflet-bar leaflet-control",
-          );
-          var button = L.DomUtil.create(
-            "a",
-            "leaflet-control-railway",
-            container,
-          );
-
-          button.href = "#";
-          button.title = "Pokaż/ukryj trasę kolejki";
-
-          L.DomEvent.on(button, "click", function (e) {
-            if (train_route_layer && train_stations_layer) {
-              var targetOpacity = ifVisible ? 0 : 1;
-              button.style.backgroundColor = ifVisible ? "#ffffff" : "#f4f4f4";
-              train_route_layer.setStyle({ opacity: targetOpacity });
-              train_stations_layer.eachLayer(function (layer) {
-                if (layer.setOpacity) {
-                  layer.setOpacity(targetOpacity);
-                }
-                if (layer.getElement()) {
-                  layer.getElement().style.pointerEvents = ifVisible
-                    ? "none"
-                    : "auto";
-                }
-              });
-
-              ifVisible = !ifVisible;
-            }
-          });
-          return container;
-        },
-      });
-
       // Trasa kolejki
       function train_route_zoom(zoom) {
         if (zoom >= 21) return 8;
@@ -329,7 +290,7 @@
           return {
             color: "#ff7800",
             weight: train_route_zoom(map.getZoom()),
-            opacity: 0,
+            opacity: 1,
             dashArray: "3, 8",
             lineJoin: "round",
           };
@@ -346,7 +307,7 @@
 
       var train_route_layer = L.geoJson(train_route, {
         style: styleRouteLine,
-      }).addTo(map);
+      });
 
       var iconStation1 = L.icon({
         iconUrl: "./The-zoo-train-route/station_0.svg",
@@ -379,7 +340,6 @@
           if (feature.properties.id == "1") {
             return L.marker(latlng, {
               icon: iconStation1,
-              opacity: 0,
               title: "Przystanek początkowy",
             }).on("click", function () {
               document.getElementById("dynamic-info-stations").innerHTML =
@@ -390,7 +350,6 @@
           } else if (feature.properties.id == "2") {
             return L.marker(latlng, {
               icon: iconStation2,
-              opacity: 0,
               title: "Przystanek 1",
             }).on("click", function () {
               document.getElementById("dynamic-info-stations").innerHTML =
@@ -400,7 +359,6 @@
           } else if (feature.properties.id == "3") {
             return L.marker(latlng, {
               icon: iconStation3,
-              opacity: 0,
               title: "Przystanek 2",
             }).on("click", function () {
               document.getElementById("dynamic-info-stations").innerHTML =
@@ -410,7 +368,6 @@
           } else if (feature.properties.id == "4") {
             return L.marker(latlng, {
               icon: iconStation4,
-              opacity: 0,
               title: "Przystanek 3",
             }).on("click", function () {
               document.getElementById("dynamic-info-stations").innerHTML =
@@ -420,7 +377,6 @@
           } else if (feature.properties.id == "5") {
             return L.marker(latlng, {
               icon: iconStation5,
-              opacity: 0,
               title: "Przystanek 4",
             }).on("click", function () {
               document.getElementById("dynamic-info-stations").innerHTML =
@@ -430,9 +386,9 @@
           }
         },
         style: styleRouteMarker,
-      }).addTo(map);
+      });
 
-      map.addControl(new RailwayControl());
+      var train_layer_group = L.layerGroup([train_route_layer, train_stations_layer]);
 
       // Strzałka północy (funkcje)
       var compass = document.getElementById("strzalka-ikona");
@@ -523,6 +479,8 @@
       var overlays = {
         "<img src='Zoo-enclosures/Zyr.svg' width='18px' style='vertical-align: middle; margin-right: 5px;'/> Wybiegi w Zoo":
           markers,
+        "<img src='The-zoo-train-route/Train-route.png' width='18px' style='vertical-align: middle; margin-right: 5px;'/> Trasa i stacje kolejki": 
+          train_layer_group
       };
 
       L.control.layers(null, overlays, { position: "topleft" }).addTo(map);
