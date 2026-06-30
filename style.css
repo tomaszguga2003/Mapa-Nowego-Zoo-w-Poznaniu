@@ -50,12 +50,12 @@ body,
 /* style dla zoom + home */
 .leaflet-control-zoomhome a {
   background-color: #ffffff;
-  color: #89732c;
+  color: #792102;
 }
 
 .leaflet-control-zoomhome a:hover {
   background-color: #f4f4f4;
-  color: #89732c;
+  color: #792102;
 }
 
 .sidebar-open .leaflet-top.leaflet-left,
@@ -80,18 +80,18 @@ body,
   line-height: 1.8;
   text-align: justify;
   font-family: 'Lato', sans-serif;
-  color: #3c3004;
+  color: #4D0202;
   margin-top: 20px;
   hyphens: auto;
 }
 
 .normal-text b {
-  color: #89732c;
+  color: #792102;
   font-weight: 600;
 }
 
 .normal-text a {
-  color: #89732c;
+  color: #792102;
 }
 
 .normal-text2 {
@@ -99,18 +99,18 @@ body,
   line-height: 1.8;
   text-align: left;
   font-family: 'Lato', sans-serif;
-  color: #3c3004;
+  color: #4D0202;
   margin-top: 20px;
   hyphens: auto;
 }
 
 .normal-text2 b {
-  color: #89732c;
+  color: #792102;
   font-weight: 600;
 }
 
 .normal-text2 a {
-  color: #89732c;
+  color: #792102;
 }
 
 .zoo-menu-list {
@@ -128,14 +128,14 @@ body,
 .link-zoo {
   display: inline-block;
   text-decoration: none;
-  color: #3c3004 !important;
+  color: #4D0202 !important;
   font-family: 'Lato', sans-serif;;
   font-size: 18px;
   transition: 0.3s;
 }
 
 .link-zoo:hover {
-  color: #af943a !important;
+  color: #792102 !important;
   transform: scale(1.05);
 }
 

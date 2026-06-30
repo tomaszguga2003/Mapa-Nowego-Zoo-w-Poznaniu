@@ -222,16 +222,17 @@
             Mapa została stworzona w ramach pracy inżynierskiej
             <b>Tomasza Gugi</b> w 2026 r. pod opieką
             <b>dr inż. Łukasza Halika</b>, na kierunku Geodezja i kartografia
-            Wydziału Nauk Geograficznych i Geologicznych UAM.<br/><br/>
+            Wydziału Nauk Geograficznych i Geologicznych UAM.<br /><br />
             Mapa przeznaczona jest głównie dla urządzeń mobilnych i ma na celu
             ułatwienie oraz urozmaicenie zwiedzania zoo. Interaktywne funkcje
             mapy pozwalają przede wszystkim na łatwe i szybkie lokalizowanie
             wybranych obiektów na terenie zoo, prezentując przy tym informacje
-            niezbędne przy zwiedzaniu tego obiektu.<br/><br/>
-            Opracowanie: Tomasz Guga<br/>
+            niezbędne przy zwiedzaniu tego obiektu.<br /><br />
+            Opracowanie: Tomasz Guga<br />
             Kontakt:
-            <a href="mailto:tomaszguga3@gmail.com">tomaszguga3@gmail.com</a><br/><br/>
-            Źródło informacji: Nowe Zoo Poznań<br/>
+            <a href="mailto:tomaszguga3@gmail.com">tomaszguga3@gmail.com</a
+            ><br /><br />
+            Źródło informacji: Nowe Zoo Poznań<br />
             Zdjęcia: Autora (jeśli nie zaznaczono inaczej)
           </p>
         </div>
@@ -388,7 +389,10 @@
         style: styleRouteMarker,
       });
 
-      var train_layer_group = L.layerGroup([train_route_layer, train_stations_layer]);
+      var train_layer_group = L.layerGroup([
+        train_route_layer,
+        train_stations_layer,
+      ]);
 
       // Strzałka północy (funkcje)
       var compass = document.getElementById("strzalka-ikona");
@@ -414,6 +418,7 @@
 
       //wybiegi zoo
       var markers = L.markerClusterGroup({
+        maxClusterRadius: 50,
         iconCreateFunction: function (cluster) {
           var count = cluster.getChildCount();
           var sizeClass = "";
@@ -421,13 +426,13 @@
 
           if (count > 15) {
             sizeClass = "cluster-large";
-            size = 60;
+            size = 45;
           } else if (count > 10) {
             sizeClass = "cluster-medium";
-            size = 50;
+            size = 35;
           } else {
             sizeClass = "cluster-small";
-            size = 40;
+            size = 25;
           }
 
           return L.divIcon({
@@ -446,14 +451,9 @@
           var infoId = feature.properties.fid || "null";
           var enclosureName = feature.properties.name || "null";
           var enclosureInfo = feature.properties.comments || "null";
-          var animalPhoto =
-            "<img src='./Animal_photos/" +
-            infoId +
-            ".jpg' alt='Zdjęcie wybiegu' style='width: 100%; border-radius: 5px; margin-top: 30px;'>";
-
           var enclosureIcon = L.icon({
             iconUrl: "Zoo-enclosures/" + iconName + ".svg",
-            iconSize: [60, 60],
+            iconSize: [55, 55],
           });
 
           return L.marker(latlng, {
@@ -465,9 +465,7 @@
               enclosureName +
               "</b>" +
               "<br> <br>" +
-              enclosureInfo +
-              "<br>" +
-              animalPhoto ;
+              enclosureInfo;
             title: (feature.properties.name, sidebar.open("enclosures-tab"));
           });
         },
@@ -479,8 +477,8 @@
       var overlays = {
         "<img src='Zoo-enclosures/Zyr.svg' width='18px' style='vertical-align: middle; margin-right: 5px;'/> Wybiegi w Zoo":
           markers,
-        "<img src='The-zoo-train-route/Train-route.png' width='18px' style='vertical-align: middle; margin-right: 5px;'/> Trasa i stacje kolejki": 
-          train_layer_group
+        "<img src='The-zoo-train-route/Train-route.png' width='18px' style='vertical-align: middle; margin-right: 5px;'/> Trasa i stacje kolejki":
+          train_layer_group,
       };
 
       L.control.layers(null, overlays, { position: "topleft" }).addTo(map);

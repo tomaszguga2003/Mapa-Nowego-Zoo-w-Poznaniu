@@ -49,7 +49,7 @@
   -ms-transition: width 0.4s ease-in-out;
   -o-transition: width 0.4s ease-in-out;
   transition: width 0.4s ease-in-out;
-  color: #89732c;
+  color: #792102;
 }
 .leaflet-control-graphicscale-inner .division .line,
 .leaflet-control-graphicscale-inner .division .line2 {
@@ -59,12 +59,12 @@
 .leaflet-control-graphicscale-inner .division .line2 {
   height: 0;
   border-width: 0;
-  border-color: #89732c;
+  border-color: #792102;
 }
 .leaflet-control-graphicscale-inner .division .line {
   height: 6px;
   border-width: 1px 1px 1px 0;
-  border-color: #89732c;
+  border-color: #792102;
 }
 .leaflet-control-graphicscale-inner .units .division:first-child .line {
   border-left-width: 1px;
@@ -81,20 +81,20 @@
 .leaflet-control-graphicscale-inner.double .division .line2 {
   height: 6px;
   border-width: 0 1px 1px 0;
-  border-color: #89732c;
+  border-color: #792102;
 }
 .leaflet-control-graphicscale-inner.double .units .division:first-child .line2 {
   border-left-width: 1px;
 }
 .leaflet-control-graphicscale-inner.double .subunits .division .line2 {
   border-width: 0 0 1px 1px;
-  border-color: #89732c;
+  border-color: #792102;
 }
 .leaflet-control-graphicscale-inner.double .label {
   margin-bottom: 14px;
 }
 .leaflet-control-graphicscale-inner.filled .fill {
-  background-color: #89732c;
+  background-color: #792102;
   position: absolute;
   top: 0;
   left: 0;
@@ -123,7 +123,7 @@
 .leaflet-control-graphicscale-inner .division.hidden .line2 {
   height: 0;
   border-width: 0;
-  border-color: #89732c;
+  border-color: #792102;
 }
 .leaflet-control-graphicscale-inner
   .division.hidden
