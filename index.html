@@ -54,7 +54,7 @@
     <div id="strzalka-polnocy">
       <img
         id="strzalka-ikona"
-        src="./Leaflet-rotate-master/Strzałka północy.png"
+        src="./Leaflet-rotate-master/Strzałka północy.svg"
         alt="Strzałka Północy"
       />
     </div>
@@ -65,7 +65,7 @@
           <li>
             <a href="#home" role="tab">
               <img
-                src="./Leaflet.sidebar.v2/Menu.png"
+                src="./Leaflet.sidebar.v2/Menu.svg"
                 class="sidebar-icon-img"
                 alt="Menu"
               />
@@ -89,7 +89,7 @@
           <li>
             <a href="#o-mapie" role="tab">
               <img
-                src="./Leaflet.sidebar.v2/O-mapie.png"
+                src="./Leaflet.sidebar.v2/O-mapie.svg"
                 class="sidebar-icon-img"
                 alt="Info"
               />
@@ -233,7 +233,8 @@
             <a href="mailto:tomaszguga3@gmail.com">tomaszguga3@gmail.com</a
             ><br /><br />
             Źródło informacji: Nowe Zoo Poznań<br />
-            Zdjęcia: Autora (jeśli nie zaznaczono inaczej)
+            Zdjęcia: Autora (jeśli nie zaznaczono inaczej)<br /><br />
+            Dane aktualne na dzień: 22 kwietnia 2026 r.
           </p>
         </div>
       </div>
@@ -345,7 +346,7 @@
             }).on("click", function () {
               document.getElementById("dynamic-info-stations").innerHTML =
                 "W kwietniu kolejka dowozi pasażerów tylko w soboty i niedziele. Codzienne kursy (od 9:30 do 18:30) w pełnym sezonie – od maja aż do końca sierpnia! <br> <br> <b>Przystanek początkowy</b> - w pobliżu tego przystanku znajdziesz m.in.: ogródek dziecięcy, pawilon zwierząt nocnych i ptaki egzotyczne." +
-                "<img src='./The-zoo-train-route/Przystanek_test.jpg' alt='Zdjęcie stacji' style='width: 100%; border-radius: 5px; margin-top: 30px;'>";
+                "<img src='./The-zoo-train-route/Przystanek_test.jpg' alt='Zdjęcie stacji' style='width: 100%; border-radius: 5px; margin-top: 30px;'> <br> Zdjęcie: Oficjalna Strona Zoo";
               sidebar.open("train-tab");
             });
           } else if (feature.properties.id == "2") {
@@ -461,6 +462,7 @@
             title: feature.properties.name,
           }).on("click", function () {
             document.getElementById("dynamic-info-enclosures").innerHTML =
+              "<div class='normal-text'>" +
               "<b>" +
               enclosureName +
               "</b>" +

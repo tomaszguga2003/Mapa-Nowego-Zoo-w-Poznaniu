@@ -1,7 +1,7 @@
 /* Compatible with Leaflet 0.7 */
 .leaflet-control-locate a {
   font-size: 1.4em;
-  color: #792102;
+  color: #2d283e;
   cursor: pointer;
 }
 .leaflet-control-locate.active a {

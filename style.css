@@ -26,7 +26,6 @@ body,
   font-style: normal;
 }
 
-/* Wygląd kontenera kompasu */
 #strzalka-polnocy {
   position: absolute;
   top: 5px;
@@ -41,21 +40,19 @@ body,
   cursor: pointer;
 }
 
-/* Wygląd samej ikonki strzałki */
 #strzalka-ikona {
   width: 80%;
   transition: transform 0.1s linear;
 }
 
-/* style dla zoom + home */
 .leaflet-control-zoomhome a {
   background-color: #ffffff;
-  color: #792102;
+  color: #2d283e;
 }
 
 .leaflet-control-zoomhome a:hover {
   background-color: #f4f4f4;
-  color: #792102;
+  color: #2d283e;
 }
 
 .sidebar-open .leaflet-top.leaflet-left,
@@ -80,18 +77,18 @@ body,
   line-height: 1.8;
   text-align: justify;
   font-family: 'Lato', sans-serif;
-  color: #4D0202;
+  color: #2d283e;
   margin-top: 20px;
   hyphens: auto;
 }
 
 .normal-text b {
-  color: #792102;
+  color: #4a3f6c;
   font-weight: 600;
 }
 
 .normal-text a {
-  color: #792102;
+  color: #4a3f6c;
 }
 
 .normal-text2 {
@@ -99,18 +96,18 @@ body,
   line-height: 1.8;
   text-align: left;
   font-family: 'Lato', sans-serif;
-  color: #4D0202;
+  color: #2d283e;
   margin-top: 20px;
   hyphens: auto;
 }
 
 .normal-text2 b {
-  color: #792102;
+  color: #4a3f6c;
   font-weight: 600;
 }
 
 .normal-text2 a {
-  color: #792102;
+  color: #4a3f6c;
 }
 
 .zoo-menu-list {
@@ -128,14 +125,14 @@ body,
 .link-zoo {
   display: inline-block;
   text-decoration: none;
-  color: #4D0202 !important;
+  color: #2d283e !important;
   font-family: 'Lato', sans-serif;;
   font-size: 18px;
   transition: 0.3s;
 }
 
 .link-zoo:hover {
-  color: #792102 !important;
+  color: #4a3f6c !important;
   transform: scale(1.05);
 }
 
@@ -152,15 +149,15 @@ body,
 }
 
 .cluster-large {
-  background-color: #4D0202;
+  background-color: #813503;
 }
 
 .cluster-medium {
-  background-color: #792102;
+  background-color: #98440c;
 }
 
 .cluster-small {
-  background-color: #AE4501;
+  background-color: #b25517;
 }
 
 .leaflet-control-layers-toggle {
