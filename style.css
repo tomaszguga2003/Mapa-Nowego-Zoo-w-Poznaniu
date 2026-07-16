@@ -55,6 +55,11 @@ body,
   color: #2d283e;
 }
 
+.leaflet-control-layers-toggle {
+    background-image: url('Marker_cluster/Layers.svg') !important;
+    background-size: 26px 26px;
+}
+
 .sidebar-open .leaflet-top.leaflet-left,
 .sidebar-open .leaflet-bottom.leaflet-left {
     display: none;
