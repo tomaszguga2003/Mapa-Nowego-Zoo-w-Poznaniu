@@ -141,32 +141,163 @@ body,
   transform: scale(1.05);
 }
 
-.custom-cluster {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 50%; 
+.search-text {
+  font-size: 15px;
+  line-height: 1.8;
+  text-align: center;
+  font-family: 'Lato', sans-serif;
+  color: #2d283e;
+  margin-top: 20px;
+  hyphens: auto;
+}
+
+.search-button{
+  background-color: #2d283e; 
   color: white; 
-  font-weight: bold;
-  font-family: Arial, sans-serif;
-  font-size: 16px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); 
+  padding: 4% 20px; 
+  border: none; 
+  border-radius: 5px; 
+  font-size: 16px; 
+  font-weight: bold;  
+  cursor: pointer; 
+  transition: background-color 0.3s ease; 
+  width: 100%;
 }
 
-.cluster-large {
-  background-color: #813503;
-}
-
-.cluster-medium {
-  background-color: #98440c;
-}
-
-.cluster-small {
-  background-color: #b25517;
-}
+.search-button:hover{
+  background-color: #675991; 
+} 
 
 .leaflet-control-layers-toggle {
     width: 30px !important;
     height: 30px !important;
     background-size: 20px 20px;
+}
+
+.restaurant-cluster {
+  background-clip: padding-box;
+  border-radius: 50%;
+}
+
+.restaurant-cluster div {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  text-align: center;
+  color: #ffffff;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pathway-route {
+  stroke: #ebe5e0;
+  stroke-width: 4px;
+  opacity: 1;
+}
+
+.pathway-route-border {
+  stroke: #8b7f77;
+  stroke-width: 5px;
+  opacity: 1;
+}
+
+.restaurant-cluster.cluster-large {
+  background-color: #dcae5bff;
+}
+
+.restaurant-cluster.cluster-medium {
+  background-color: #dcae5bff;
+}
+
+.restaurant-cluster.cluster-small {
+  background-color: #dcae5bff;
+}
+
+.toilets-cluster {
+  background-clip: padding-box;
+  border-radius: 50%;
+}
+
+.toilets-cluster div {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  text-align: center;
+  color: #ffffff;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.toilets-cluster.cluster-large {
+  background-color: #68cfcfff;
+}
+
+.toilets-cluster.cluster-medium {
+  background-color: #68cfcfff;
+}
+
+.toilets-cluster.cluster-small {
+  background-color: #68cfcfff;
+}
+
+.resting_places-cluster {
+  background-clip: padding-box;
+  border-radius: 50%;
+}
+
+.resting_places-cluster div {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  text-align: center;
+  color: #ffffff;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.resting_places-cluster.cluster-large {
+  background-color: rgb(56, 109, 36);
+}
+
+.resting_places-cluster.cluster-medium {
+  background-color: rgb(91, 157, 65);
+}
+
+.resting_places-cluster.cluster-small {
+  background-color: #85cf68ff;
+}
+
+.enclosures-cluster {
+  background-clip: padding-box;
+  border-radius: 50%;
+}
+
+.enclosures-cluster div {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  text-align: center;
+  color: #ffffff;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.enclosures-cluster.cluster-large {
+  background-color: #813503;
+}
+
+.enclosures-cluster.cluster-medium {
+  background-color: #98440c;
+}
+
+.enclosures-cluster.cluster-small {
+  background-color: #b25517;
 }

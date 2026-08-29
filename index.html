@@ -45,6 +45,12 @@
     <script src="./The-zoo-train-route/train_route.js"></script>
     <script src="./The-zoo-train-route/train_stations.js"></script>
     <script src="./Point_layers/enclosures.js"></script>
+    <script src="./Point_layers/restaurants.js"></script>
+    <script src="./Point_layers/toilets.js"></script>
+    <script src="./Point_layers/resting_places.js"></script>
+    <script src="./Point_layers/stamps.js"></script>
+    <script src="./Point_layers/other.js"></script>
+    <script src="./Pathways/pathway.js"></script>
     <script src="./Marker_cluster/leaflet.markercluster.js"></script>
   </head>
 
@@ -68,6 +74,15 @@
                 src="./Leaflet.sidebar.v2/Menu.svg"
                 class="sidebar-icon-img"
                 alt="Menu"
+              />
+            </a>
+          </li>
+          <li>
+            <a href="#search" role="tab">
+              <img
+                src="./Leaflet.sidebar.v2/Menu.svg"
+                class="sidebar-icon-img"
+                alt="Search_bar"
               />
             </a>
           </li>
@@ -187,6 +202,65 @@
           </ul>
         </div>
 
+        <div class="leaflet-sidebar-pane" id="search">
+          <h1 class="leaflet-sidebar-header">
+            ZNAJDŹ OBIEKT
+            <div class="leaflet-sidebar-close">
+              <i class="fa fa-caret-left"></i>
+            </div>
+          </h1>
+          <div class="search-text" style="padding: 15px">
+            <button id="Adaks pustynny" class="search-button" type="button">
+              ADAKS PUSTYNNY
+            </button>
+            <br /><br />
+            <button id="my-search-button" class="search-button" type="button">
+              AKROBATKA KARLICZKA
+            </button>
+            <br /><br />
+            <button id="my-search-button" class="search-button" type="button">
+              ALPAKA
+            </button>
+            <br /><br />
+            <button id="my-search-button" class="search-button" type="button">
+              ANTYLOPA SZABLOROGA
+            </button>
+            <br /><br />
+            <button id="my-search-button" class="search-button" type="button">
+              Test
+            </button>
+            <br /><br />
+            <button id="my-search-button" class="search-button" type="button">
+              Test 2
+            </button>
+            <br /><br />
+            <button id="my-search-button" class="search-button" type="button">
+              Test
+            </button>
+            <br /><br />
+            <button id="my-search-button" class="search-button" type="button">
+              Test 2
+            </button>
+            <br /><br />
+            <button id="my-search-button" class="search-button" type="button">
+              Test
+            </button>
+            <br /><br />
+            <button id="my-search-button" class="search-button" type="button">
+              Test 2
+            </button>
+            <br /><br />
+            <button id="my-search-button" class="search-button" type="button">
+              Test
+            </button>
+            <br /><br />
+            <button id="my-search-button" class="search-button" type="button">
+              Test 2
+            </button>
+            <br /><br />
+          </div>
+        </div>
+
         <div class="leaflet-sidebar-pane" id="train-tab">
           <h1 class="leaflet-sidebar-header">
             KOLEJKA
@@ -275,6 +349,28 @@
       var graphicScale = L.control.graphicScale({ fill: "fill" }).addTo(map);
 
       var ifVisible = false;
+
+      // Strzałka północy (funkcje)
+      var compass = document.getElementById("strzalka-ikona");
+      var compassContainer = document.getElementById("strzalka-polnocy");
+
+      function update_rotation() {
+        var kat = map.getBearing();
+        compass.style.transform = "rotate(" + kat + "deg)";
+        console.log("Kąt mapy: " + kat);
+      }
+
+      update_rotation(); // Obrót strzałki na -70 po załadowaniu
+
+      //sidebar przy otwarciu = open
+      sidebar.on("opening", function () {
+        document.getElementById("map").classList.add("sidebar-open");
+      });
+
+      //sidebar przy zamknęciu = nie open
+      sidebar.on("closing", function () {
+        document.getElementById("map").classList.remove("sidebar-open");
+      });
 
       // Trasa kolejki
       function train_route_zoom(zoom) {
@@ -395,30 +491,34 @@
         train_stations_layer,
       ]);
 
-      // Strzałka północy (funkcje)
-      var compass = document.getElementById("strzalka-ikona");
-      var compassContainer = document.getElementById("strzalka-polnocy");
-
-      function update_rotation() {
-        var kat = map.getBearing();
-        compass.style.transform = "rotate(" + kat + "deg)";
-        console.log("Kąt mapy: " + kat);
+      //ścieżki
+      function stylePathwayLineBorder(feature) {
+        return {
+          className: "pathway-route-border",
+        };
       }
 
-      update_rotation(); // Obrót strzałki na -70 po załadowaniu
+      var pathway_layer_border = L.geoJson(pathway, {
+        style: stylePathwayLineBorder,
+      }).addTo(map);
 
-      //sidebar przy otwarciu = open
-      sidebar.on("opening", function () {
-        document.getElementById("map").classList.add("sidebar-open");
+      function stylePathwayLine(feature) {
+        return {
+          className: "pathway-route",
+        };
+      }
+
+      var pathway_layer = L.geoJson(pathway, {
+        style: stylePathwayLine,
+      }).addTo(map);
+
+      //restauracje
+      var icon_restaurants = L.icon({
+        iconUrl: "./Other_icons/restaurants.svg",
+        iconSize: [40, 40],
       });
 
-      //sidebar przy zamknęciu = nie open
-      sidebar.on("closing", function () {
-        document.getElementById("map").classList.remove("sidebar-open");
-      });
-
-      //wybiegi zoo
-      var markers = L.markerClusterGroup({
+      var restaurants_cluster = L.markerClusterGroup({
         maxClusterRadius: 50,
         iconCreateFunction: function (cluster) {
           var count = cluster.getChildCount();
@@ -438,7 +538,191 @@
 
           return L.divIcon({
             html: "<div><span>" + count + "</span></div>",
-            className: "custom-cluster " + sizeClass,
+            className: "restaurant-cluster " + sizeClass,
+            iconSize: L.point(size, size),
+          });
+        },
+      });
+
+      var restaurants_layer = L.geoJson(restaurants, {
+        pointToLayer: function (feature, latlng) {
+          return L.marker(latlng, {
+            icon: icon_restaurants,
+          });
+        },
+      });
+
+      restaurants_cluster.addLayer(restaurants_layer);
+
+      //toalety
+      var icon_toilets = L.icon({
+        iconUrl: "./Other_icons/toilets.svg",
+        iconSize: [40, 40],
+      });
+
+      var toilets_cluster = L.markerClusterGroup({
+        maxClusterRadius: 50,
+        iconCreateFunction: function (cluster) {
+          var count = cluster.getChildCount();
+          var sizeClass = "";
+          var size = 0;
+
+          if (count > 15) {
+            sizeClass = "cluster-large";
+            size = 45;
+          } else if (count > 10) {
+            sizeClass = "cluster-medium";
+            size = 35;
+          } else {
+            sizeClass = "cluster-small";
+            size = 25;
+          }
+
+          return L.divIcon({
+            html: "<div><span>" + count + "</span></div>",
+            className: "toilets-cluster " + sizeClass,
+            iconSize: L.point(size, size),
+          });
+        },
+      });
+
+      var toilets_layer = L.geoJson(toilets, {
+        pointToLayer: function (feature, latlng) {
+          return L.marker(latlng, {
+            icon: icon_toilets,
+          });
+        },
+      });
+
+      toilets_cluster.addLayer(toilets_layer);
+
+      //miejsca odpoczynku
+      var icon_resting_places = L.icon({
+        iconUrl: "./Other_icons/resting_places.svg",
+        iconSize: [40, 40],
+      });
+
+      var resting_places_cluster = L.markerClusterGroup({
+        maxClusterRadius: 50,
+        iconCreateFunction: function (cluster) {
+          var count = cluster.getChildCount();
+          var sizeClass = "";
+          var size = 0;
+
+          if (count > 15) {
+            sizeClass = "cluster-large";
+            size = 45;
+          } else if (count > 10) {
+            sizeClass = "cluster-medium";
+            size = 35;
+          } else {
+            sizeClass = "cluster-small";
+            size = 25;
+          }
+
+          return L.divIcon({
+            html: "<div><span>" + count + "</span></div>",
+            className: "resting_places-cluster " + sizeClass,
+            iconSize: L.point(size, size),
+          });
+        },
+      });
+
+      var resting_places_layer = L.geoJson(resting_places, {
+        pointToLayer: function (feature, latlng) {
+          return L.marker(latlng, {
+            icon: icon_resting_places,
+          });
+        },
+      });
+
+      resting_places_cluster.addLayer(resting_places_layer);
+
+      //pieczątki
+      var icon_stamps = L.icon({
+        iconUrl: "./Other_icons/stamps.svg",
+        iconSize: [40, 40],
+      });
+
+      var stamps_layer = L.geoJson(stamps, {
+        pointToLayer: function (feature, latlng) {
+          return L.marker(latlng, {
+            icon: icon_stamps,
+          });
+        },
+      });
+
+      var stamps_group = L.layerGroup();
+      stamps_group.addLayer(stamps_layer);
+
+      //pozostałe
+      var icon_parking_lot = L.icon({
+        iconUrl: "./Other_icons/parking_lot.svg",
+        iconSize: [40, 40],
+      });
+
+      var icon_bus_stop = L.icon({
+        iconUrl: "./Other_icons/bus_stop.svg",
+        iconSize: [40, 40],
+      });
+
+      var icon_maltanka_stop = L.icon({
+        iconUrl: "./Other_icons/maltanka_stop.svg",
+        iconSize: [40, 40],
+      });
+
+      var icon_fortIII = L.icon({
+        iconUrl: "./Other_icons/fortIII.svg",
+        iconSize: [40, 40],
+      });
+
+      var other_layer = L.geoJson(other, {
+        pointToLayer: function (feature, latlng) {
+          if (feature.properties.id == "1") {
+            return L.marker(latlng, {
+              icon: icon_parking_lot,
+            });
+          } else if (feature.properties.id == "2") {
+            return L.marker(latlng, {
+              icon: icon_bus_stop,
+            });
+          } else if (feature.properties.id == "3") {
+            return L.marker(latlng, {
+              icon: icon_maltanka_stop,
+            });
+          } else if (feature.properties.id == "4") {
+            return L.marker(latlng, {
+              icon: icon_fortIII,
+            });
+          }
+        },
+      });
+
+      var other_group = L.layerGroup();
+      other_group.addLayer(other_layer);
+
+      //wybiegi zoo
+      var enclosures_cluster = L.markerClusterGroup({
+        maxClusterRadius: 50,
+        iconCreateFunction: function (cluster) {
+          var count = cluster.getChildCount();
+          var sizeClass = "";
+          var size = 0;
+
+          if (count > 15) {
+            sizeClass = "cluster-large";
+            size = 45;
+          } else if (count > 10) {
+            sizeClass = "cluster-medium";
+            size = 35;
+          } else {
+            sizeClass = "cluster-small";
+            size = 25;
+          }
+
+          return L.divIcon({
+            html: "<div><span>" + count + "</span></div>",
+            className: "enclosures-cluster " + sizeClass,
             iconSize: L.point(size, size),
           });
         },
@@ -467,23 +751,61 @@
               enclosureName +
               "</b>" +
               "<br> <br>" +
-              enclosureInfo;
-            title: (feature.properties.name, sidebar.open("enclosures-tab"));
+              enclosureInfo +
+              "</div>";
+            sidebar.open("enclosures-tab");
           });
         },
       });
 
-      markers.addLayer(enclosures_layer);
-      map.addLayer(markers);
+      enclosures_cluster.addLayer(enclosures_layer);
+      map.addLayer(enclosures_cluster);
 
       var overlays = {
         "<img src='Zoo-enclosures/Zyr.svg' width='18px' style='vertical-align: middle; margin-right: 5px;'/> Wybiegi w Zoo":
-          markers,
+          enclosures_cluster,
         "<img src='The-zoo-train-route/Train-route.svg' width='18px' style='vertical-align: middle; margin-right: 5px;'/> Trasa i stacje kolejki":
           train_layer_group,
+        "<img src='Other_icons/restaurants.svg' width='18px' style='vertical-align: middle; margin-right: 5px;'/> Restauracje":
+          restaurants_cluster,
+        "<img src='Other_icons/toilets.svg' width='18px' style='vertical-align: middle; margin-right: 5px;'/> Toalety":
+          toilets_cluster,
+        "<img src='Other_icons/resting_places.svg' width='18px' style='vertical-align: middle; margin-right: 5px;'/> Miejsca odpoczynku":
+          resting_places_cluster,
+        "<img src='Other_icons/stamps.svg' width='18px' style='vertical-align: middle; margin-right: 5px;'/> Pieczątki":
+          stamps_group,
+        "<img src='Other_icons/fortIII.svg' width='18px' style='vertical-align: middle; margin-right: 5px;'/> Pozostałe":
+          other_group,
       };
 
       L.control.layers(null, overlays, { position: "topleft" }).addTo(map);
+
+      const buttons = document.querySelectorAll(".search-button");
+
+      buttons.forEach((button) => {
+        button.addEventListener("click", function (event) {
+          const clickedId = event.target.id;
+
+          fetch("Point_layers/encloasures.geojson")
+            .then((response) => response.json())
+            .then((data) => {
+              const foundFeature = data.features.find(
+                (feature) => feature.properties.id == clickedId,
+              );
+              if (foundFeature) {
+                const XY = foundFeature.properties.coordinates;
+
+                map.flyTo(XY, 17, {
+                  animate: true,
+                  duration: 2.5,
+                });
+              } else {
+                console.warn("Nie znaleziono wybiegu o id:", clickedId);
+              }
+            })
+            .catch((error) => console.error("Błąd ładowania pliku:", error)); // Wyłapanie ewentualnego błędu
+        });
+      });
     </script>
   </body>
 </html>

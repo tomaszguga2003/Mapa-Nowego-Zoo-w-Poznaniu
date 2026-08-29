@@ -1,0 +1,14 @@
+var toilets = {
+"type": "FeatureCollection",
+"name": "toilets",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "fid": 0 }, "geometry": { "type": "Point", "coordinates": [ 16.994188840482593, 52.400299259772325 ] } },
+{ "type": "Feature", "properties": { "fid": 1 }, "geometry": { "type": "Point", "coordinates": [ 16.994524022292484, 52.396960558569312 ] } },
+{ "type": "Feature", "properties": { "fid": 2 }, "geometry": { "type": "Point", "coordinates": [ 17.001987145883994, 52.397772014283603 ] } },
+{ "type": "Feature", "properties": { "fid": 3 }, "geometry": { "type": "Point", "coordinates": [ 17.006575835345934, 52.398711120564109 ] } },
+{ "type": "Feature", "properties": { "fid": 4 }, "geometry": { "type": "Point", "coordinates": [ 17.00987221867442, 52.399495373360544 ] } },
+{ "type": "Feature", "properties": { "fid": 5 }, "geometry": { "type": "Point", "coordinates": [ 17.010916815827663, 52.399221648584493 ] } },
+{ "type": "Feature", "properties": { "fid": 6 }, "geometry": { "type": "Point", "coordinates": [ 17.002656383814152, 52.401722132345185 ] } }
+]
+}
