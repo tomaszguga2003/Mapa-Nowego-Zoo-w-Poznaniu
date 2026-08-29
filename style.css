@@ -26,25 +26,6 @@ body,
   font-style: normal;
 }
 
-.loading_screen {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: #ffffff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 9999;
-  transition: opacity 0.6s ease;
-}
-
-#loading_screen.hidden {
-  opacity: 0;
-  pointer-events: none;
-}
-
 #strzalka-polnocy {
   position: absolute;
   top: 5px;
