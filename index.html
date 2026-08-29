@@ -81,7 +81,6 @@
     <link rel="preload" href="./Animal_photos/102.jpg" as="image" />
     <link rel="preload" href="./Animal_photos/104.jpg" as="image" />
     <link rel="preload" href="./Animal_photos/108.jpg" as="image" />
-    <link rel="preload" href="./Zoo-enclosures/Ada.svg" as="image" />
     <link rel="preload" href="./Zoo-enclosures/Ppg.svg" as="image" />
     <link rel="preload" href="./Zoo-enclosures/DzKo.svg" as="image" />
     <link rel="preload" href="./Zoo-enclosures/DzAl.svg" as="image" />
@@ -184,6 +183,10 @@
   </head>
 
   <body>
+    <div id="loading_screen">
+      <div class="loading_text">Wczytywanie ZOO...</div>
+    </div>
+
     <div id="map"></div>
 
     <div id="strzalka-polnocy">
@@ -1299,6 +1302,11 @@
             console.warn("Nie znaleziono wybiegu o fid:", clickedId);
           }
         });
+      });
+
+      window.addEventListener("DOMContentLoaded", function () {
+        const loading_screen = document.getElementById("loading_screen");
+        loading_screen.classList.add("hidden");
       });
     </script>
   </body>
