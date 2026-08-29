@@ -301,3 +301,10 @@ body,
 .enclosures-cluster.cluster-small {
   background-color: #b25517;
 }
+
+.leaflet-control-layers input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    accent-color: #2d283e;
+    cursor: pointer;
+}
