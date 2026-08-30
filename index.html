@@ -183,7 +183,11 @@
   </head>
 
   <body>
-       <div id="map"></div>
+    <div class="welcome-screen">
+      <img src="welcome.gif" alt="welcome-animation" />
+    </div>
+
+    <div id="map"></div>
 
     <div id="strzalka-polnocy">
       <img
@@ -810,6 +814,19 @@
     </div>
 
     <script>
+      window.addEventListener("DOMContentLoaded", function () {
+        setTimeout(function () {
+          const welcomeScreen = document.querySelector(".welcome-screen");
+          if (welcomeScreen) {
+            welcomeScreen.classList.add("hidden");
+
+            setTimeout(function () {
+              welcomeScreen.remove();
+            }, 600);
+          }
+        }, 5000);
+      });
+
       // Inicjalizacja mapy
       var map = L.map("map", {
         fullscreenControl: true,
@@ -1299,7 +1316,6 @@
           }
         });
       });
-
     </script>
   </body>
 </html>
