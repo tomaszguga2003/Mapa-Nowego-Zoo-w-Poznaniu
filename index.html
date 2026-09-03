@@ -814,20 +814,17 @@
     </div>
 
     <script>
-      window.addEventListener("DOMContentLoaded", function () {
-        setTimeout(function () {
-          const welcomeScreen = document.querySelector(".welcome-screen");
-          if (welcomeScreen) {
-            welcomeScreen.classList.add("hidden");
+      setTimeout(function () {
+        const welcomeScreen = document.querySelector(".welcome-screen");
+        if (welcomeScreen) {
+          welcomeScreen.classList.add("hidden");
 
-            setTimeout(function () {
-              welcomeScreen.remove();
-            }, 600);
-          }
-        }, 5000);
-      });
+          setTimeout(function () {
+            welcomeScreen.remove();
+          }, 600);
+        }
+      }, 5000);
 
-      // Inicjalizacja mapy
       var map = L.map("map", {
         fullscreenControl: true,
         zoomControl: false,
@@ -844,27 +841,20 @@
         bounceAtZoomLimits: false,
       }).setView([52.401381, 17.004067], 15);
 
-      // Bazowa mapa, kafelki
       L.tileLayer("Basemap/{z}/{x}/{y}.png", {
         minZoom: 15,
         maxZoom: 21,
         noWrap: true,
       }).addTo(map);
 
-      // dodanie panelu bocznego
       var sidebar = L.control.sidebar({ container: "sidebar" }).addTo(map);
 
-      // zoom, podziałka, lokalizacja
       var zoomHome = L.Control.zoomHome();
       zoomHome.addTo(map);
       L.control.locate().addTo(map);
       var graphicScale = L.control.graphicScale({ fill: "fill" }).addTo(map);
 
-      var ifVisible = false;
-
-      // Strzałka północy (funkcje)
       var compass = document.getElementById("strzalka-ikona");
-      var compassContainer = document.getElementById("strzalka-polnocy");
 
       function update_rotation() {
         var kat = map.getBearing();
@@ -872,19 +862,16 @@
         console.log("Kąt mapy: " + kat);
       }
 
-      update_rotation(); // Obrót strzałki na -70 po załadowaniu
+      update_rotation();
 
-      //sidebar przy otwarciu = open
       sidebar.on("opening", function () {
         document.getElementById("map").classList.add("sidebar-open");
       });
 
-      //sidebar przy zamknęciu = nie open
       sidebar.on("closing", function () {
         document.getElementById("map").classList.remove("sidebar-open");
       });
 
-      // Trasa kolejki
       function train_route_zoom(zoom) {
         if (zoom >= 21) return 8;
         if (zoom >= 20) return 7;
@@ -944,7 +931,6 @@
         iconSize: [40, 40],
       });
 
-      // kolejka
       var train_stations_layer = L.geoJson(train_stations, {
         pointToLayer: function (feature, latlng) {
           if (feature.properties.id == "1") {
@@ -1003,7 +989,6 @@
         train_stations_layer,
       ]);
 
-      //ścieżki
       function stylePathwayLineBorder(feature) {
         return {
           className: "pathway-route-border",
@@ -1024,7 +1009,6 @@
         style: stylePathwayLine,
       }).addTo(map);
 
-      //restauracje
       var icon_restaurants = L.icon({
         iconUrl: "./Other_icons/restaurants.svg",
         iconSize: [40, 40],
@@ -1066,7 +1050,6 @@
 
       restaurants_cluster.addLayer(restaurants_layer);
 
-      //toalety
       var icon_toilets = L.icon({
         iconUrl: "./Other_icons/toilets.svg",
         iconSize: [40, 40],
@@ -1108,7 +1091,6 @@
 
       toilets_cluster.addLayer(toilets_layer);
 
-      //miejsca odpoczynku
       var icon_resting_places = L.icon({
         iconUrl: "./Other_icons/resting_places.svg",
         iconSize: [40, 40],
@@ -1150,7 +1132,6 @@
 
       resting_places_cluster.addLayer(resting_places_layer);
 
-      //pieczątki
       var icon_stamps = L.icon({
         iconUrl: "./Other_icons/stamps.svg",
         iconSize: [40, 40],
@@ -1213,7 +1194,6 @@
       var other_group = L.layerGroup();
       other_group.addLayer(other_layer);
 
-      //wybiegi zoo
       var enclosures_cluster = L.markerClusterGroup({
         maxClusterRadius: 50,
         iconCreateFunction: function (cluster) {
