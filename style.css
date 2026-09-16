@@ -26,6 +26,12 @@ body,
   font-style: normal;
 }
 
+@font-face {
+  font-family: "Swis721";
+  src: url("Fonts/Swis721 BlkEx BT Black/Swis721\ BlkEx\ BT\ Black.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
 .welcome-screen {
   position: fixed;
   top: 0;
@@ -115,13 +121,14 @@ body,
   font-weight: 600;
 }
 
-.normal-text em {
+.normal-text a {
   color: #6b5d93;
   font-weight: 600;
 }
 
-.normal-text a {
-  color: #4a3f6c;
+.normal-text em {
+  color: #6b5d93;
+  font-weight: 600;
 }
 
 .normal-text2 {

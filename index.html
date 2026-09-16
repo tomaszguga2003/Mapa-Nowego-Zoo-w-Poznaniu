@@ -7,6 +7,7 @@
       content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
     />
     <title>Mapa Nowego Zoo w Poznaniu</title>
+    <link rel="icon" type="image/x-icon" href="icon.png" />
 
     <link
       rel="stylesheet"
@@ -244,7 +245,7 @@
 
         <ul role="tablist">
           <li style="pointer-events: none">
-            <a href="#train-tab" role="tab">
+            <a href="#other-object-tab" role="tab">
               <i class="" style="font-size: 24px; padding-top: 5px"></i>
             </a>
           </li>
@@ -441,7 +442,7 @@
               KANGUROSZCZURNIK PĘDZLOOGONOWY</button
             ><br /><br />
             <button id="91" class="search-button" type="button">
-              KANURA PATAGOŃSKA</button
+              KONURA PATAGOŃSKA</button
             ><br /><br />
             <button id="25" class="search-button" type="button">
               KAPIBARA WIELKA</button
@@ -459,6 +460,9 @@
               KARAKARA FALKLANDZKA</button
             ><br /><br />
             <button id="119" class="search-button" type="button">KINKAŻU</button
+            ><br /><br />
+            <button id="93" class="search-button" type="button">
+              KARIANA CZERWONONOGA</button
             ><br /><br />
             <button id="97" class="search-button" type="button">
               KIŚCIEC ANNAMSKI</button
@@ -553,9 +557,6 @@
             <button id="24" class="search-button" type="button">
               MARA PATAGOŃSKA</button
             ><br /><br />
-            <button id="93" class="search-button" type="button">
-              MARIANA CZERWONONOGA</button
-            ><br /><br />
             <button id="82" class="search-button" type="button">
               MILU CHIŃSKI</button
             ><br /><br />
@@ -575,7 +576,7 @@
               MYSZ KARŁOWATA</button
             ><br /><br />
             <button id="130" class="search-button" type="button">
-              MYSZKA KAKTUSOWY</button
+              MYSZAK KAKTUSOWY</button
             ><br /><br />
             <button id="104" class="search-button" type="button">
               MYSZOŁÓW ZWYCZAJNY</button
@@ -590,7 +591,7 @@
               NANDU SZARE</button
             ><br /><br />
             <button id="133" class="search-button" type="button">
-              NASTOLATKA POSPOLITA</button
+              BYDLARKA POSPOLITA</button
             ><br /><br />
             <button id="29" class="search-button" type="button">
               NIEDŹWIEDŹ BRUNATNY</button
@@ -640,9 +641,6 @@
             <button id="139" class="search-button" type="button">
               PAJĄK PTASZNIK</button
             ><br /><br />
-            <button id="121" class="search-button" type="button">
-              PANCERNIK BOLITA</button
-            ><br /><br />
             <button id="51" class="search-button" type="button">
               PANDA RUDA</button
             ><br /><br />
@@ -663,16 +661,13 @@
             <button id="72" class="search-button" type="button">
               PŁOMYKÓWKA ZWYCZAJNA</button
             ><br /><br />
-            <button id="68" class="search-button" type="button">POCHACZ</button
-            ><br /><br />
-            <button id="110" class="search-button" type="button">
-              PODSKOCZEK EGIPSKI</button
-            ><br /><br />
             <button id="131" class="search-button" type="button">
               PODSKOCZEK EGIPSKI</button
             ><br /><br />
             <button id="154" class="search-button" type="button">
               PÓJDŹKA ZIEMNA</button
+            ><br /><br />
+            <button id="68" class="search-button" type="button">PUCHACZ</button
             ><br /><br />
             <button id="47" class="search-button" type="button">
               PUCHOCZUB</button
@@ -820,7 +815,7 @@
           </div>
         </div>
 
-        <div class="leaflet-sidebar-pane" id="train-tab">
+        <div class="leaflet-sidebar-pane" id="other-object-tab">
           <h1 class="leaflet-sidebar-header">
             KOLEJKA
             <div class="leaflet-sidebar-close">
@@ -1001,7 +996,7 @@
               document.getElementById("dynamic-info-stations").innerHTML =
                 "W kwietniu kolejka dowozi pasażerów tylko w soboty i niedziele. Codzienne kursy (od 9:30 do 18:30) w pełnym sezonie – od maja aż do końca sierpnia! <br> <br> <b>Przystanek początkowy</b> - w pobliżu tego przystanku znajdziesz m.in.: ogródek dziecięcy, pawilon zwierząt nocnych i ptaki egzotyczne." +
                 "<img src='./The-zoo-train-route/Przystanek_test.jpg' alt='Zdjęcie stacji' style='width: 100%; border-radius: 5px; margin-top: 30px;'> <br> Zdjęcie: Oficjalna Strona Zoo";
-              sidebar.open("train-tab");
+              sidebar.open("other-object-tab");
             });
           } else if (feature.properties.id == "2") {
             return L.marker(latlng, {
@@ -1010,7 +1005,7 @@
             }).on("click", function () {
               document.getElementById("dynamic-info-stations").innerHTML =
                 "W kwietniu kolejka dowozi pasażerów tylko w soboty i niedziele. Codzienne kursy (od 9:30 do 18:30) w pełnym sezonie – od maja aż do końca sierpnia! <br> <br> <b>Przystanek pierwszy flaming</b> - w pobliżu tego przystanku znajdziesz m.in.: ptaki wodne, zwierzęta fauny afryki i lemury";
-              sidebar.open("train-tab");
+              sidebar.open("other-object-tab");
             });
           } else if (feature.properties.id == "3") {
             return L.marker(latlng, {
@@ -1019,7 +1014,7 @@
             }).on("click", function () {
               document.getElementById("dynamic-info-stations").innerHTML =
                 "W kwietniu kolejka dowozi pasażerów tylko w soboty i niedziele. Codzienne kursy (od 9:30 do 18:30) w pełnym sezonie – od maja aż do końca sierpnia! <br> <br> <b>Przystanek drugi słoń</b> - w pobliżu tego przystanku znajdziesz m.in.: słonie, wielbłądy i susły.";
-              sidebar.open("train-tab");
+              sidebar.open("other-object-tab");
             });
           } else if (feature.properties.id == "4") {
             return L.marker(latlng, {
@@ -1028,7 +1023,7 @@
             }).on("click", function () {
               document.getElementById("dynamic-info-stations").innerHTML =
                 "W kwietniu kolejka dowozi pasażerów tylko w soboty i niedziele. Codzienne kursy (od 9:30 do 18:30) w pełnym sezonie – od maja aż do końca sierpnia! <br> <br> <b>Przystanek trzeci pelikan</b> - w pobliżu tego przystanku znajdziesz m.in.: ptaki wodne, insektarium, ptaki drapieżne i sowy.";
-              sidebar.open("train-tab");
+              sidebar.open("other-object-tab");
             });
           } else if (feature.properties.id == "5") {
             return L.marker(latlng, {
@@ -1037,7 +1032,7 @@
             }).on("click", function () {
               document.getElementById("dynamic-info-stations").innerHTML =
                 "W kwietniu kolejka dowozi pasażerów tylko w soboty i niedziele. Codzienne kursy (od 9:30 do 18:30) w pełnym sezonie – od maja aż do końca sierpnia! <br> <br> <b>Przystanek czwarty ryś</b> - w pobliżu tego przystanku znajdziesz m.in.: drobne ssaki, nosorożce i wydry.";
-              sidebar.open("train-tab");
+              sidebar.open("other-object-tab");
             });
           }
         },
@@ -1234,6 +1229,11 @@
           if (feature.properties.id == "1") {
             return L.marker(latlng, {
               icon: icon_parking_lot,
+              title: "Parking",
+            }).on("click", function () {
+              document.getElementById("dynamic-info-stations").innerHTML =
+                "Parking płatny od 1 kwietnia do 31 października, a w pozostałym okresie – wolny od opłaty. Opłaty:<br><br>– w weekendy samochód osobowy, motocykl 7 zł/godz., autokar 20 zł/godz.<br><br> – w dni powszednie samochód osobowy, motocykl 5 zł/godz., autokar 10 zł/godz.<br><br>Na terenie parkingu Ogrodu Zoologicznego nie ma możliwości ładowania pojazdów elektrycznych.";
+              sidebar.open("other-object-tab");
             });
           } else if (feature.properties.id == "2") {
             return L.marker(latlng, {
@@ -1287,6 +1287,7 @@
           var iconName = feature.properties.icon || "null";
           var infoId = feature.properties.fid || "null";
           var enclosureName = feature.properties.name || "null";
+          var encloasureLatinName = feature.properties.latin_name || "null";
           var enclosureInfo = feature.properties.comments || "null";
           var enclosureIcon = L.icon({
             iconUrl: "Zoo-enclosures/" + iconName + ".svg",
@@ -1301,7 +1302,10 @@
               "<div class='normal-text'>" +
               "<b>" +
               enclosureName +
-              "</b>" +
+              "</b>" + "<br>" +
+              "<em>" +
+              encloasureLatinName +
+              "</em>" +
               "<br> <br>" +
               enclosureInfo +
               "</div>";
