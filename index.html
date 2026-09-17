@@ -19,15 +19,15 @@
     />
     <link
       rel="stylesheet"
-      href="./Leaflet.Control.OSMGeocoder/Control.OSMGeocoder.css"
-    />
-    <link
-      rel="stylesheet"
       href="./Leaflet.Control.Locate/L.Control.Locate.css"
     />
     <link
       rel="stylesheet"
       href="./Leaflet.GraphicScale/Leaflet.GraphicScale.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="./leaflet-simple-button-master/leaflet-simple-button.css"
     />
     <link rel="preload" href="./Animal_photos/1.jpg" as="image" />
     <link rel="preload" href="./Animal_photos/2.jpg" as="image" />
@@ -56,7 +56,6 @@
     <link rel="preload" href="./Animal_photos/39.jpg" as="image" />
     <link rel="preload" href="./Animal_photos/40.jpg" as="image" />
     <link rel="preload" href="./Animal_photos/41.jpg" as="image" />
-    <link rel="preload" href="./Animal_photos/42.jpg" as="image" />
     <link rel="preload" href="./Animal_photos/43.jpg" as="image" />
     <link rel="preload" href="./Animal_photos/45.jpg" as="image" />
     <link rel="preload" href="./Animal_photos/49.jpg" as="image" />
@@ -72,7 +71,6 @@
     <link rel="preload" href="./Animal_photos/67.jpg" as="image" />
     <link rel="preload" href="./Animal_photos/69.jpg" as="image" />
     <link rel="preload" href="./Animal_photos/73.jpg" as="image" />
-    <link rel="preload" href="./Animal_photos/76.jpg" as="image" />
     <link rel="preload" href="./Animal_photos/77.jpg" as="image" />
     <link rel="preload" href="./Animal_photos/82.jpg" as="image" />
     <link rel="preload" href="./Animal_photos/86.jpg" as="image" />
@@ -83,7 +81,6 @@
     <link rel="preload" href="./Animal_photos/96.jpg" as="image" />
     <link rel="preload" href="./Animal_photos/97.jpg" as="image" />
     <link rel="preload" href="./Animal_photos/98.jpg" as="image" />
-    <link rel="preload" href="./Animal_photos/99.jpg" as="image" />
     <link rel="preload" href="./Animal_photos/100.jpg" as="image" />
     <link rel="preload" href="./Animal_photos/102.jpg" as="image" />
     <link rel="preload" href="./Animal_photos/104.jpg" as="image" />
@@ -186,7 +183,6 @@
     <link rel="stylesheet" href="./style.css" type="text/css" />
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-    <script src="./Leaflet.Control.OSMGeocoder/Control.OSMGeocoder.js"></script>
     <script src="./Leaflet.Control.Locate/L.Control.Locate.js"></script>
     <script src="./Leaflet.GraphicScale/Leaflet.GraphicScale.min.js"></script>
     <script src="./Leaflet.fullscreen/Leaflet.fullscreen.min.js"></script>
@@ -203,6 +199,7 @@
     <script src="./Point_layers/other.js"></script>
     <script src="./Pathways/pathway.js"></script>
     <script src="./Marker_cluster/leaflet.markercluster.js"></script>
+    <script src="./leaflet-simple-button-master/leaflet-simple-button.js"></script>
   </head>
 
   <body>
@@ -435,6 +432,9 @@
             <button id="46" class="search-button" type="button">
               KACYK OCHROWY</button
             ><br /><br />
+            <button id="122" class="search-button" type="button">
+              KANCZYL MNIEJSZY</button
+            ><br /><br />
             <button id="106" class="search-button" type="button">
               KANGUR OLBRZYMI</button
             ><br /><br />
@@ -487,9 +487,6 @@
             ><br /><br />
             <button id="137" class="search-button" type="button">
               KOLCZAK SESZELSKI</button
-            ><br /><br />
-            <button id="122" class="search-button" type="button">
-              KONCZYL MNIEJSZY</button
             ><br /><br />
             <button id="78" class="search-button" type="button">
               KONDOR WIELKI</button
@@ -817,7 +814,7 @@
 
         <div class="leaflet-sidebar-pane" id="other-object-tab">
           <h1 class="leaflet-sidebar-header">
-            KOLEJKA
+            O OBIEKCIE
             <div class="leaflet-sidebar-close">
               <i class="fa fa-caret-left"></i>
             </div>
@@ -880,6 +877,8 @@
         }
       }, 5000);
 
+      var dark_mode = false;
+
       var map = L.map("map", {
         fullscreenControl: true,
         zoomControl: false,
@@ -896,7 +895,7 @@
         bounceAtZoomLimits: false,
       }).setView([52.401381, 17.004067], 15);
 
-      L.tileLayer("Basemap/{z}/{x}/{y}.png", {
+      var baseMapLayer = L.tileLayer("Basemap/{z}/{x}/{y}.png", {
         minZoom: 15,
         maxZoom: 21,
         noWrap: true,
@@ -907,7 +906,36 @@
       var zoomHome = L.Control.zoomHome();
       zoomHome.addTo(map);
       L.control.locate().addTo(map);
-      var graphicScale = L.control.graphicScale({ fill: "fill" }).addTo(map);
+
+      var dark_mode_button = new L.Control.SimpleButton({
+        position: "topleft",
+        click: function (evt) {
+          dark_mode = !dark_mode;
+
+          if (dark_mode === true) {
+            document.body.classList.add("dark-theme");
+            if (compass) {
+              compass.src = "Leaflet-rotate-master/Strzałka północy dark.svg";
+            }
+            baseMapLayer.setUrl("Basemap_dark/{z}/{x}/{y}.png");
+          } else {
+            document.body.classList.remove("dark-theme");
+            if (compass) {
+              compass.src = "Leaflet-rotate-master/Strzałka północy.svg";
+            }
+            baseMapLayer.setUrl("Basemap/{z}/{x}/{y}.png");
+          }
+        },
+      });
+      dark_mode_button.addTo(map);
+
+      dark_mode_button.getContainer().id = "dark-mode-button";
+
+      dark_mode_button.getContainer().querySelector("a").innerHTML = `
+      <img src="Leaflet.sidebar.v2/Menu.svg" class="dark-mode-icon" alt="Tryb ciemny">
+`;
+
+      var graphicScale = L.control.graphicScale({ fill: true }).addTo(map);
 
       var compass = document.getElementById("strzalka-ikona");
 
@@ -1232,20 +1260,35 @@
               title: "Parking",
             }).on("click", function () {
               document.getElementById("dynamic-info-stations").innerHTML =
-                "Parking płatny od 1 kwietnia do 31 października, a w pozostałym okresie – wolny od opłaty. Opłaty:<br><br>– w weekendy samochód osobowy, motocykl 7 zł/godz., autokar 20 zł/godz.<br><br> – w dni powszednie samochód osobowy, motocykl 5 zł/godz., autokar 10 zł/godz.<br><br>Na terenie parkingu Ogrodu Zoologicznego nie ma możliwości ładowania pojazdów elektrycznych.";
+                "Parking płatny od 1 kwietnia do 31 października, a w pozostałym okresie - wolny od opłaty. Opłaty:<br><br>- w weekendy samochód osobowy, motocykl 7 zł/godz., autokar 20 zł/godz.<br> - w dni powszednie samochód osobowy, motocykl 5 zł/godz., autokar 10 zł/godz.<br><br>Na terenie parkingu Ogrodu Zoologicznego nie ma możliwości ładowania pojazdów elektrycznych.";
               sidebar.open("other-object-tab");
             });
           } else if (feature.properties.id == "2") {
             return L.marker(latlng, {
               icon: icon_bus_stop,
+              title: "Przystanek autobusowy",
+            }).on("click", function () {
+              document.getElementById("dynamic-info-stations").innerHTML =
+                "Autobusem linii numer 184, na linii tej kursują autobusy niskopodłogowe. Odległość od przystanku autobusowego do kas Nowego ZOO wynosi około sześćdziesięciu metrów, do wejścia około sto metrów.";
+              sidebar.open("other-object-tab");
             });
           } else if (feature.properties.id == "3") {
             return L.marker(latlng, {
               icon: icon_maltanka_stop,
+              title: "Przystanek kolejki Maltanka",
+            }).on("click", function () {
+              document.getElementById("dynamic-info-stations").innerHTML =
+                "Kolejka Maltanka to jedna z najbardziej rozpoznawalnych atrakcji Poznania, która od wielu lat przyciąga zarówno dzieci, jak i osoby zainteresowane kolejnictwem wąskotorowym. Jej trasa ma niespełna 4 km długości i obejmuje cztery stacje: Maltanka, Ptyś, Balbinka oraz Zwierzyniec. Przejazd kolejką stanowi wygodny sposób na dotarcie z rejonu ronda Śródka w okolice Term Maltańskich i Nowego Zoo. Podczas podróży pasażerowie mogą jednocześnie podziwiać Jezioro Maltańskie oraz znajdujące się w jego otoczeniu liczne atrakcje. Połączenie walorów transportowych, turystycznych i rekreacyjnych sprawia, że Kolejka Maltanka od lat pozostaje chętnie odwiedzaną atrakcją Poznania.<br><br>Rozkład jazdy Kolejki Maltanka w dni robocze obejmuje odjazdy ze stacji:<br><br> - Maltanka o godz. 9.30, 10.00, 11.00, 12.00, 13.00, 14.10, 15.00, 16.00, 17.00 oraz 18.00,<br> - Zwierzyniec o godz. 9.45, 10.30, 11.30, 12.30, 13.30, 14.30, 15.30, 16.30, 17.30 i 18.30. <br><br> W soboty, niedziele i święta odjazdy ze stacji Maltanka odbywają się co 30 minut w godzinach od 10.00 do 18.30, a ze stacji Zwierzyniec od 10.30 do 19.00. <br><br>Cennik biletów obejmuje bilet normalny jednorazowy na jeden przejazd w cenie 18 zł oraz bilet normalny w dwie strony („tam i z powrotem”) w cenie 24 zł. <br>Bilet ulgowy jednorazowy kosztuje 12 zł, natomiast bilet ulgowy w dwie strony 16 zł. <br>Dla zorganizowanych grup dzieci i młodzieży do 16. roku życia, liczących minimum 10 osób, dostępny jest bilet wycieczkowy w cenie 10 zł za jeden przejazd lub 13 zł za przejazd w obie strony. <br>Dostępny jest również bilet rodzinny dla maksymalnie 5 osób, w tym najwyżej 2 osób powyżej 16. roku życia, którego cena wynosi 48 zł za jeden przejazd oraz 64 zł za przejazd w obie strony.<br> Bilety na przejazd Kolejką Maltanka można nabyć na stacjach początkowej i końcowej, czyli Maltanka oraz Zwierzyniec.<br><br> Źródło: https://www.mpk.poznan.pl/";
+              sidebar.open("other-object-tab");
             });
           } else if (feature.properties.id == "4") {
             return L.marker(latlng, {
               icon: icon_fortIII,
+              title: "Fort III",
+            }).on("click", function () {
+              document.getElementById("dynamic-info-stations").innerHTML =
+                "<b> Fort główny III Graf Kichbach </b><br><br> Fort III zbudowano w latach 1877-1881. Na wale artyleryjskim, oprócz zwykłych stanowisk działowych, zbudowano murowaną działobitnię dla armaty pierścieniowej 15 cm na łożu nadrzeżnym. W 1881 roku, w końcowej fazie budowy, pośrodku czoła zbudowano krótki odcinek wału dla piechoty. W latach 1877-1890 wzmocniono mury i stropy budowli podziemnych, a po bokach zbudowano baterie artyleryjskie ze schronami amunicyjnymi. Około 1892 roku zainstalowano dwie stalowe, obrotowe kopułu obserwacyjne piechoty typu W.T.90, a w pierwszych latach XX wieku - kopułę obserwatora artylerii, typu W.T.Neu. Drobniejsze modernizacje prowadzono aż do wybuchy I wojny światowej. W czasie II wojny światowej zadaszono fosy, aby umieścić w nich warsztaty i magazyny fabryki samolotów Focke-Wulf. Po wojnie rozpoczęto prace rozbiórkowe w koszarach, ale pozostała część budowli została nienaruszona.";
+              sidebar.open("other-object-tab");
             });
           }
         },
@@ -1302,7 +1345,8 @@
               "<div class='normal-text'>" +
               "<b>" +
               enclosureName +
-              "</b>" + "<br>" +
+              "</b>" +
+              "<br>" +
               "<em>" +
               encloasureLatinName +
               "</em>" +
