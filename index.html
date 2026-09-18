@@ -176,6 +176,7 @@
     <link rel="preload" href="./Zoo-enclosures/OwWj.svg" as="image" />
     <link rel="preload" href="./Zoo-enclosures/OwPj.svg" as="image" />
     <link rel="preload" href="./Zoo-enclosures/OwPt.svg" as="image" />
+
     <link rel="stylesheet" href="./Leaflet.fullscreen/leaflet.fullscreen.css" />
     <link rel="stylesheet" href="./Leaflet.ZoomHome/leaflet.zoomhome.css" />
     <link rel="stylesheet" href="./Leaflet.sidebar.v2/leaflet-sidebar.css" />
@@ -250,6 +251,26 @@
           <li style="pointer-events: none">
             <a href="#enclosures-tab" role="tab">
               <i class="" style="font-size: 24px; padding-top: 5px"></i>
+            </a>
+          </li>
+
+          <li>
+            <a href="#wsparcie" role="tab">
+              <img
+                src="./Leaflet.sidebar.v2/Wsparcie.svg"
+                class="sidebar-icon-img"
+                alt="Wsparcie"
+              />
+            </a>
+          </li>
+
+          <li>
+            <a href="#pomoc" role="tab">
+              <img
+                src="./Leaflet.sidebar.v2/Help.svg"
+                class="sidebar-icon-img"
+                alt="Help"
+              />
             </a>
           </li>
 
@@ -836,6 +857,43 @@
           </p>
         </div>
 
+        <div class="leaflet-sidebar-pane" id="wsparcie">
+          <h1 class="leaflet-sidebar-header">
+            WESPRZYJ PROJEKT
+            <div class="leaflet-sidebar-close">
+              <i class="fa fa-caret-left"></i>
+            </div>
+          </h1>
+          <p class="normal-text">
+            Jeśli ten projekt ci się podoba weź udział w badaniu satysfakcji
+            użytkownika klikając
+            <a href="https://forms.gle/7szXnZYmcvznrTVS8">tutaj</a
+            >.<br /><br />Jeśli chcesz, aby twoje zdjęcie wybiegu pojawiło się
+            na stronie to prześlij je na adres email:
+            <a href="mailto:tomaszguga3@gmail.com">tomaszguga3@gmail.com</a
+            >.<br />
+            Temat wiadomości "Zdjęcie do mapy - nazwa zwierzęcia - twoje imię i
+            nazwisko" jeśli chcesz, aby pojawiły się pod zdjęciem.
+          </p>
+        </div>
+
+        <div class="leaflet-sidebar-pane" id="pomoc">
+          <h1 class="leaflet-sidebar-header">
+            POMOC
+            <div class="leaflet-sidebar-close">
+              <i class="fa fa-caret-left"></i>
+            </div>
+          </h1>
+          <p class="normal-text">
+            Obiekty na warstwach: wybiegi, trasa kolejki, inne są interaktywne.
+            Po kliknięciu wyświetli się opis wybranego obiektu.<br /><br />W
+            celu znalezienia konkretnego wybiegu można skorzystać z funkcji
+            wyszukaj. Z alfabetycznie uporządkowanej listy wystarczy kliknąć
+            odpowiednią nazwę zwierzęcia które chcemy wyszukać a widok mapy
+            przesunie się do jego lokalizacji.
+          </p>
+        </div>
+
         <div class="leaflet-sidebar-pane" id="o-mapie">
           <h1 class="leaflet-sidebar-header">
             O MAPIE
@@ -932,7 +990,7 @@
       dark_mode_button.getContainer().id = "dark-mode-button";
 
       dark_mode_button.getContainer().querySelector("a").innerHTML = `
-      <img src="Leaflet.sidebar.v2/Menu.svg" class="dark-mode-icon" alt="Tryb ciemny">
+      <img src="leaflet-simple-button-master/Dark_mode.svg" class="dark-mode-icon" alt="Tryb ciemny">
 `;
 
       var graphicScale = L.control.graphicScale({ fill: true }).addTo(map);

@@ -67,28 +67,38 @@ body.dark-theme .leaflet-control-graphicscale {
 }
 
 #dark-mode-button {
-    width: 31px !important;
-    height: 31px !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    border: none !important;
     position: absolute;
     top: 10px;
-    left: 54px;
+    left: 52px;
+    width: 32px !important;
+    height: 32px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: 2px solid rgba(0,0,0,0.2) !important;
+    border-radius: 4px !important;
+    background-color: #fff !important;
+    background-clip: padding-box !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+    box-shadow: none !important;
 }
 
 #dark-mode-button a {
-    width: 31px !important;
-    height: 31px !important;
     display: flex !important;
     align-items: center;
     justify-content: center;
-    border: 2px solid rgba(0,0,0,0.2) !important;
-    border-radius: 2px !important;
-    background-color: #fff !important;
-    box-sizing: border-box;
+    width: 100% !important;
+    height: 100% !important;
+    border: none !important;
+    background: transparent !important;
+    color: #333 !important;
+    text-decoration: none !important;
+    cursor: pointer;
 }
 
+#dark-mode-button a:hover {
+    background-color: #f4f4f4 !important;
+}
 #strzalka-polnocy {
   position: absolute;
   top: 5px;
