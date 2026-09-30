@@ -1012,6 +1012,12 @@
 
       update_rotation();
 
+      map.on("rotate", update_rotation);
+
+      document.getElementById("strzalka-polnocy").addEventListener("click", function () {
+        map.setBearing(-70);
+      });
+
       sidebar.on("opening", function () {
         document.getElementById("map").classList.add("sidebar-open");
       });
