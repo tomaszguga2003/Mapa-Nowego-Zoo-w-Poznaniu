@@ -51,7 +51,6 @@
     <script src="./Point_layers/resting_places.js"></script>
     <script src="./Point_layers/stamps.js"></script>
     <script src="./Point_layers/other.js"></script>
-    <script src="./Pathways/pathway.js"></script>
     <script src="./Marker_cluster/leaflet.markercluster.js"></script>
     <script src="./leaflet-simple-button-master/leaflet-simple-button.js"></script>
 
@@ -1137,26 +1136,6 @@
         train_route_layer,
         train_stations_layer,
       ]);
-
-      function stylePathwayLineBorder(feature) {
-        return {
-          className: "pathway-route-border",
-        };
-      }
-
-      var pathway_layer_border = L.geoJson(pathway, {
-        style: stylePathwayLineBorder,
-      }).addTo(map);
-
-      function stylePathwayLine(feature) {
-        return {
-          className: "pathway-route",
-        };
-      }
-
-      var pathway_layer = L.geoJson(pathway, {
-        style: stylePathwayLine,
-      }).addTo(map);
 
       var icon_restaurants = L.icon({
         iconUrl: "./Other_icons/restaurants.svg",

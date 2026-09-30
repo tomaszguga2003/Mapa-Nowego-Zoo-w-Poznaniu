@@ -275,26 +275,6 @@ body.dark-theme .leaflet-control-graphicscale {
   justify-content: center;
 }
 
-.pathway-route {
-  stroke: #ebe5e0;
-  stroke-width: 4px;
-  opacity: 1;
-}
-
-.pathway-route-border {
-  stroke: #8b7f77;
-  stroke-width: 5px;
-  opacity: 1;
-}
-
-body.dark-theme path.pathway-route {
-    stroke: #b0bfba !important;
-}
-
-body.dark-theme path.pathway-route-border {
-    stroke: #2c2e2d !important;
-}
-
 .restaurant-cluster.cluster-large {
   background-color: #dcae5bff;
 }
