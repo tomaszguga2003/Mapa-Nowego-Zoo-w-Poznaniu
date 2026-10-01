@@ -29,7 +29,7 @@
       rel="stylesheet"
       href="./leaflet-simple-button-master/leaflet-simple-button.css"
     />
-    
+
     <link rel="stylesheet" href="./Leaflet.fullscreen/leaflet.fullscreen.css" />
     <link rel="stylesheet" href="./Leaflet.ZoomHome/leaflet.zoomhome.css" />
     <link rel="stylesheet" href="./Leaflet.sidebar.v2/leaflet-sidebar.css" />
@@ -201,7 +201,6 @@
     <link rel="preload" href="./Animal_photos/152.jpg" as="image" />
     <link rel="preload" href="./Animal_photos/153.jpg" as="image" />
     <link rel="preload" href="./Animal_photos/154.jpg" as="image" />
-
   </head>
 
   <body>
@@ -898,6 +897,49 @@
             . Z alfabetycznie uporządkowanej listy wystarczy kliknąć odpowiednią
             nazwę zwierzęcia, które chcemy wyszukać a widok mapy przesunie się
             do jego lokalizacji. <br /><br />
+            Aby przybliżyć lub oddalić widok mapy skorzystaj z przycisków
+            <img
+              src="Leaflet.sidebar.v2/Plus.svg"
+              alt="opis"
+              style="height: 1em; vertical-align: middle"
+            />
+            oraz
+            <img
+              src="Leaflet.sidebar.v2/Minus.svg"
+              alt="opis"
+              style="height: 1em; vertical-align: middle"
+            />
+            . Aby powrócić do wioku pierwotnego kliknij przycisk
+            <img
+              src="Leaflet.sidebar.v2/Home.svg"
+              alt="opis"
+              style="height: 1em; vertical-align: middle"
+            />, a w celu zresetowania obrotu mapy kliknij
+            <img
+              src="Leaflet.sidebar.v2/Rotate.svg"
+              alt="opis"
+              style="height: 1em; vertical-align: middle"
+            /> . W celu włączenia trybu pełnoekranowego naciśnij przycisk 
+            <img
+              src="Leaflet.sidebar.v2/Fullscreen.svg"
+              alt="opis"
+              style="height: 1em; vertical-align: middle"
+            /> , a trybu ciemnego
+            <img
+              src="Leaflet.sidebar.v2/Dark.svg"
+              alt="opis"
+              style="height: 1em; vertical-align: middle"
+            /> . Przyciskiem
+            <img
+              src="Leaflet.sidebar.v2/Geo.svg"
+              alt="opis"
+              style="height: 1em; vertical-align: middle"
+            /> włączysz śledzenie twojej aktualnej lokalizacji, a przycisk
+            <img
+              src="Leaflet.sidebar.v2/Layer.svg"
+              alt="opis"
+              style="height: 1em; vertical-align: middle"
+            /> służy do przełączania warstw mapy.
           </p>
         </div>
 
@@ -1014,9 +1056,11 @@
 
       map.on("rotate", update_rotation);
 
-      document.getElementById("strzalka-polnocy").addEventListener("click", function () {
-        map.setBearing(-70);
-      });
+      document
+        .getElementById("strzalka-polnocy")
+        .addEventListener("click", function () {
+          map.setBearing(-70);
+        });
 
       sidebar.on("opening", function () {
         document.getElementById("map").classList.add("sidebar-open");
